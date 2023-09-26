@@ -1,6 +1,6 @@
 package org.example;
 
-public class Fruit {
+public class Fruit implements Edible {
 
     private String fruitType; //Apples, Strawberries, Watermelon, Blackberry
     private int fruitAmount;
@@ -20,20 +20,20 @@ public class Fruit {
         this.fruitAmount = fruitAmount;
     }
 
-    public void eat(int fruitPiecesEaten) {
-
-        if (fruitPiecesEaten < this.fruitAmount) {
-            this.fruitAmount -= fruitPiecesEaten;
-            System.out.println("Ate " + this.fruitAmount + " pieces of fruit.");
+    @Override
+    public void eat(int piecesEaten) {
+        if (piecesEaten < this.fruitAmount) {
+            this.fruitAmount -= piecesEaten;
+            System.out.println("Ate " + piecesEaten + " pieces of fruit.");
         }
         else {
-            this.fruitAmount = 0;
             System.out.println("Only ate " + this.fruitAmount + " pieces, and there is none left.");
+            this.fruitAmount = 0;
         }
     }
-
-    public void replenishFruit(int fruitAdded){
-        this.fruitAmount += fruitAdded;
+    @Override
+    public void replenish(int piecesAdded){
+        this.fruitAmount += piecesAdded;
     }
 
     //TODO: add a way to determine if plural, and fruit specific plurality
